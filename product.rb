@@ -20,13 +20,13 @@
       	get_info
         puts "Inserido com sucesso!"
        when "2"
-       	  all_products
-         # puts "Foram encontrados 10 resultados!"
+       	puts "Digite o preço máximo"
+       	valor = gets.chomp
+       	valor.to_i
+         all_products(valor)
        when "3"
         	puts "Preço editado com sucesso!"
        when "4"
-       when "5"
-       	self.all
      end
   end
 
@@ -41,7 +41,7 @@
   end
 
   def collection_product(name,price)
-  	hash = { name: name.to_s, price: price.to_s }
+  	hash = { name: name, price: price }
   	@products << hash
   	puts "------------------------------------------------------------------"
   	puts "O Produto " + @products[0][:name] + " foi cadastrado com sucesso."
@@ -49,12 +49,27 @@
 
   end
 
-  def all_products
+  def all_products(valor)
   	puts "==============================================="
       puts @products.size
-      @products.each_with_index { |p,i| puts "Index: #{i}                | Nome: #{p[:name]}          | Preço/Tonelada: #{p[:price]}" }
+      @products.each_with_index { |p,i|
+
+       if(p[:price].to_i <= valor.to_i)
+
+      	puts "Index: #{i}   | Nome: #{p[:name]}       | Preço/Tonelada: #{p[:price]}"
+       end
+
+      }
 
   	puts "==============================================="
+  	puts "Pressione qualquer botão para continuar"
+  	action = gets.chomp
+  	if(action != "" )
+  	end
+  end
+
+  def product_search_price
+
   end
 
   def program
