@@ -25,6 +25,11 @@
        	valor.to_i
          all_products(valor)
        when "3"
+       	    puts "Digite o index do produto"
+       	    index = gets.chomp
+       	    puts "Digite o novo preço do produto"
+       	    new_price = gets.chomp
+       	    edit_price(index,new_price)
         	puts "Preço editado com sucesso!"
        when "4"
      end
@@ -68,8 +73,16 @@
   	end
   end
 
-  def product_search_price
+  def edit_price(index,new_price)
+   @products.each_with_index { |p,i|
 
+       if(i == index)
+          @products[i][:price] = new_price
+          puts @products[i][:price]
+       end
+       #Verificar o porque não está alterado o valor para o new_price
+
+      }
   end
 
   def program
