@@ -1,12 +1,4 @@
-
-  def name
-  	puts "#{@name}"
-  end
-
-  def price
-  	puts "#{@price}"
-  end
-
+  @products = []
 
   def header
     puts "**********************************************"
@@ -28,7 +20,8 @@
       	get_info
         puts "Inserido com sucesso!"
        when "2"
-         puts "Foram encontrados 10 resultados!"
+       	  all_products
+         # puts "Foram encontrados 10 resultados!"
        when "3"
         	puts "Preço editado com sucesso!"
        when "4"
@@ -48,12 +41,20 @@
   end
 
   def collection_product(name,price)
-  	hash = { name: name, price: price }
-  	@product = []
-  	@product.push(hash)
-  	puts "------------------"
-  	puts "Produto: " + @product[0][:name]
-  	puts "------------------"
+  	hash = { name: name.to_s, price: price.to_s }
+  	@products << hash
+  	puts "------------------------------------------------------------------"
+  	puts "O Produto " + @products[0][:name] + " foi cadastrado com sucesso."
+  	puts "------------------------------------------------------------------"
+
+  end
+
+  def all_products
+  	puts "==============================================="
+      puts @products.size
+      @products.each_with_index { |p,i| puts "Index: #{i}                | Nome: #{p[:name]}          | Preço/Tonelada: #{p[:price]}" }
+
+  	puts "==============================================="
   end
 
   def program
