@@ -76,11 +76,9 @@
   def edit_price(index,new_price)
    @products.each_with_index { |p,i|
 
-       if(i == index)
-          @products[i][:price] = new_price
-          puts @products[i][:price]
-       end
-       #Verificar o porque não está alterado o valor para o new_price
+       p[:price] = new_price if i == index.to_i
+       puts i.class
+       puts index.class
 
       }
   end
