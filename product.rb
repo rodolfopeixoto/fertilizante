@@ -7,8 +7,8 @@
     puts "1) Inserir um Fertilizante"
     puts "2) Pesquisar um Fertilizantes por Preço"
     puts "3) Editar Preço de um Fertilizante"
-    puts "5) Visualizar todos"
     puts "4) Sair"
+    puts "5) Visualizar todos"
 
     puts "**********************************************"
 
@@ -32,6 +32,10 @@
        	    edit_price(index,new_price)
         	puts "Preço editado com sucesso!"
        when "4"
+       	puts "Obrigado por utilizar o programa!"
+       	space
+       when "5"
+       	all_products(nil)
      end
   end
 
@@ -54,18 +58,27 @@
 
   end
 
-  def all_products(valor)
+  def all_products(valor = nil)
   	puts "==============================================="
-      puts @products.size
-      @products.each_with_index { |p,i|
+    puts "Total de registros: #{@products.size} "
 
-       if(p[:price].to_i <= valor.to_i)
+    space
 
-      	puts "Index: #{i}   | Nome: #{p[:name]}       | Preço/Tonelada: #{p[:price]}"
-       end
+      if @products.size == 0
+      	puts "Não existe registro!"
+      else
+        @products.each_with_index { |p,i|
+
+        unless valor.nil?
+           if(p[:price].to_i <= valor.to_i)
+             puts "Index: #{i}   | Nome: #{p[:name]}       | Preço/Tonelada: #{p[:price]}"
+           end
+        else
+          puts "Index: #{i}   | Nome: #{p[:name]}       | Preço/Tonelada: #{p[:price]}"
+        end
 
       }
-
+    end
   	puts "==============================================="
   	puts "Pressione qualquer botão para continuar"
   	action = gets.chomp
@@ -82,6 +95,14 @@
 
       }
   end
+
+  def space
+   puts ""
+   puts ""
+   puts ""
+  end
+
+
 
   def program
     loop do
